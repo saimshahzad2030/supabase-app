@@ -8,8 +8,7 @@ const tokenRoutes = require("./src/routes/token.routes");
 const foodRoutes = require("./src/routes/food.routes");
 const { fetchFoods } = require("./src/controller/foods.controller");
 const supabase = require("./src/db/db");
-// const { createTableIfNotExists } = require("./src/model/icecream.model");
-// createTableIfNotExists();
+const { fetchFoodsApi } = require("./src/controller/foods.controller");
 
 const app = express();
 app.use(cors());
@@ -19,8 +18,6 @@ app.use(express.json());
 // app.use("/api", emailRoutes);
 // app.use("/api", tokenRoutes);
 app.use("/api", foodRoutes);
-app.get("/", async (req, res) => {
-  res.json("Hello World");
-});
+app.get("/", fetchFoodsApi);
 fetchFoods();
 app.listen(PORT, () => console.log(`Server runing at PORT ${PORT}`));
